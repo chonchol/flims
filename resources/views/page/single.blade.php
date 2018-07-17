@@ -29,6 +29,7 @@
             <div class="card-body">
             	@foreach($allComment as $comment)
 				<p><strong>{{ $comment->name}}:</strong> {{ $comment->comment }}</p>
+				<hr>
 				@endforeach
               	@include('page.comment')
             </div>

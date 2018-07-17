@@ -8,6 +8,5 @@
     <label for="InputComment">Comment*</label>
     <textarea name="comment" id="comment" cols="133" rows="5"></textarea>
   </div>                                               
-  <hr>
   <button type="submit" class="btn btn-success">Leave a Comment</button>
 </form>

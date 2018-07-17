@@ -11,6 +11,10 @@ use DB;
 
 class FlimController extends Controller
 {
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
 	// Api Route Calling start here
 	public function index()
     {
@@ -122,6 +126,7 @@ class FlimController extends Controller
    		$flimId = Flim::select('id')->where('id', '=', $flim_id)->first();
    		//dd($qrcodes);
         $comment = new Comment();
+        $comment->user_id = 1;
         //$comment->flim_id = $flimId->id;
         
         $comment->name = $request->get('name');

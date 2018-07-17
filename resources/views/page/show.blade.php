@@ -5,7 +5,7 @@
     <style>
         .portlet-body{
             margin-bottom: 100px;
-            margin-top: 100px;
+            margin-top: 50px;
         }
     </style>
 @endpush
@@ -24,6 +24,7 @@
                             <th> Rating </th>
                             <th> Ticket Price </th>
                             <th> Country </th>
+                            <th> Action </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,6 +38,7 @@
                                 <td> {{ $flim->rating }} </td>
                                 <td> ${{ $flim->ticket_price }} </td>
                                 <td> {{ $flim->country }} </td>
+                                <td> <a href="{{url('flims/show/').'/'.$flim->name}}">View</a> </td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -3,7 +3,9 @@
 <style>
     .form_area{
         margin-bottom: 100px;
-        margin-top: 100px;
+    }
+    #FormControlSelect1{
+        height: 36px!important;
     }
 </style>
 @endpush

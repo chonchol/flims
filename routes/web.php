@@ -10,14 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
     return view('welcome');
 });
-
-/*Route::get('/flims/show/{slug}', function () {
-    return view('page.single');
-});*/
 
 
 Route::get('/flims/show', ['as' => 'flims.show', 'uses' => 'FlimController@ShowFlim']);
@@ -26,3 +24,5 @@ Route::get('/flims/create', ['as' => 'flims.create', 'uses' => 'FlimController@c
 Route::post('/flims/save', ['as' => 'flims.save', 'uses' => 'FlimController@StoreFlim']);
 
 Route::post('/flims/comment/save', ['as' => 'comment.save', 'uses' => 'FlimController@Comment']);
+
+
