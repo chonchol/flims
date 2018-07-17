@@ -19,8 +19,7 @@
               <h3 class="card-title">{{$singleFlim->name}}</h3>
               <h4>${{$singleFlim->ticket_price}}</h4>
               <p class="card-text">{{$singleFlim->description}}</p>
-              <span class="text-warning">★ ★ ★ ★ ☆</span>
-              {{$singleFlim->rating}} stars
+              <span class="text-warning">{{$singleFlim->rating}}★ stars</span>
             </div>
           </div>
           <div class="card card-outline-secondary my-4">
@@ -28,9 +27,10 @@
               Flim Reviews
             </div>
             <div class="card-body">
-              @include('page.comment')
-              <hr>
-              <a href="#" class="btn btn-success">Leave a Comment</a>
+            	@foreach($allComment as $comment)
+				<p><strong>{{ $comment->name}}:</strong> {{ $comment->comment }}</p>
+				@endforeach
+              	@include('page.comment')
             </div>
           </div>
         </div>

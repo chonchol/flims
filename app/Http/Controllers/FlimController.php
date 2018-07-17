@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Flim;
+use App\Comment;
 use Redirect;
 use Illuminate\Support\Facades\Input;
 use DB;
@@ -96,7 +97,37 @@ class FlimController extends Controller
     public function SingleFlim($slug)
     {
     	$singleFlim = DB::table('flims')->select('*')->where('name','=', $slug)->first();
-    	//dd($singleFlim);
-        return view('page.single', ['slug' => $slug, 'singleFlim' => $singleFlim]);
+
+    	$idSingleFlim = $singleFlim->id;
+    	$allComment = DB::table('comments')
+            ->leftJoin('flims', 'comments.flim_id', '=', 'flims.id')
+            ->select('comments.comment', 'comments.name')
+            ->where('comments.flim_id', '=', $idSingleFlim)
+            ->get();
+    	//dd($allComment);
+        return view('page.single', ['slug' => $slug, 'singleFlim' => $singleFlim, 'allComment' => $allComment]);
+    }
+
+    public function Comment(Request $request, $id=0)
+    {
+   		$this->validate($request, [
+            'name' => 'required',
+            'comment' => 'required',
+        ]);
+
+
+
+        $flim_id = Flim::find($id);
+
+   		$flimId = Flim::select('id')->where('id', '=', $flim_id)->first();
+   		//dd($qrcodes);
+        $comment = new Comment();
+        //$comment->flim_id = $flimId->id;
+        
+        $comment->name = $request->get('name');
+        $comment->comment = $request->get('comment');
+
+        $comment->save();
+        return redirect()->back();
     }
 }

@@ -24,3 +24,5 @@ Route::get('/flims/show', ['as' => 'flims.show', 'uses' => 'FlimController@ShowF
 Route::get('/flims/show/{slug}', ['as' => 'flims.single', 'uses' => 'FlimController@SingleFlim']);
 Route::get('/flims/create', ['as' => 'flims.create', 'uses' => 'FlimController@create']);
 Route::post('/flims/save', ['as' => 'flims.save', 'uses' => 'FlimController@StoreFlim']);
+
+Route::post('/flims/comment/save', ['as' => 'comment.save', 'uses' => 'FlimController@Comment']);
