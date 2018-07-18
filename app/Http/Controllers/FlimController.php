@@ -8,6 +8,7 @@ use App\Comment;
 use Redirect;
 use Illuminate\Support\Facades\Input;
 use DB;
+use Auth;
 
 class FlimController extends Controller
 {
@@ -75,6 +76,13 @@ class FlimController extends Controller
         $flim->country = $request->get('country');
         $flim->genre = $request->get('genre');
 
+/*      $genres = $inputs['genre'];
+		foreach ($genres as $genre) {
+		    Flim::create([
+		        'genre'   => $genre,
+		    ]);
+		}*/
+
         if ($request->hasFile('photo')) {
             $file = array('photo' => Input::file('photo'));
             $destinationPath = 'uploads/'; // upload path
@@ -126,7 +134,7 @@ class FlimController extends Controller
    		$flimId = Flim::select('id')->where('id', '=', $flim_id)->first();
    		//dd($qrcodes);
         $comment = new Comment();
-        $comment->user_id = 1;
+        $comment->user_id = Auth::user()->id;
         //$comment->flim_id = $flimId->id;
         
         $comment->name = $request->get('name');
