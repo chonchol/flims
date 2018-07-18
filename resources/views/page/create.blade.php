@@ -14,7 +14,6 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <div class="form_area">
-
                         @include('common.errors')
                         <div class="flash-message">
                             @foreach (['danger', 'warning', 'success', 'info'] as $msg)
@@ -24,7 +23,6 @@
                               @endif
                             @endforeach
                           </div> <!-- end .flash-message -->
-
 
                             <form action="{{url('/flims/save')}}" method="post" enctype="multipart/form-data">
                                 {{ csrf_field() }}
