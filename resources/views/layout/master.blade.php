@@ -53,7 +53,7 @@
                 <li><a href="{{ route('register') }}">Register</a></li>
             @else
             <li class="nav-item active">
-              <a class="nav-link" href="{{url('/home')}}">Home
+              <a class="nav-link" href="{{url('/home')}}">Dashboard
                 <span class="sr-only">(current)</span>
               </a>
             </li>
