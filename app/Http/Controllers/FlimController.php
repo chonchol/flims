@@ -117,30 +117,25 @@ class FlimController extends Controller
             ->where('comments.flim_id', '=', $idSingleFlim)
             ->get();
     	//dd($allComment);
-        return view('page.single', ['slug' => $slug, 'singleFlim' => $singleFlim, 'allComment' => $allComment]);
+        return view('page.single', ['slug' => $slug, 'singleFlim' => $singleFlim, 'allComment' => $allComment, 'idSingleFlim' => $idSingleFlim]);
     }
 
-    public function Comment(Request $request, $id=0)
+    public function Comment(Request $request, $idSingleFlim)
     {
    		$this->validate($request, [
             'name' => 'required',
             'comment' => 'required',
         ]);
 
-
-
-        $flim_id = Flim::find($id);
-
-   		$flimId = Flim::select('id')->where('id', '=', $flim_id)->first();
-   		//dd($qrcodes);
         $comment = new Comment();
         $comment->user_id = Auth::user()->id;
-        //$comment->flim_id = $flimId->id;
+        $comment->flim_id = $idSingleFlim;
         
         $comment->name = $request->get('name');
         $comment->comment = $request->get('comment');
 
         $comment->save();
+        $request->session()->flash('alert-success', 'New Flim added Successfully!');
         return redirect()->back();
     }
 }

@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
             $table->integer('user_id');
             $table->integer('flim_id');
             $table->string('name');
-            $table->text('nacomment');
+            $table->text('comment');
             $table->timestamps();
         });
     }
